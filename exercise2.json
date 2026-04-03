@@ -1,0 +1,77 @@
+[
+    {
+        "id": "bdab1cd4fe3c64e3",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "bb0d114823d9d4d4",
+        "type": "http in",
+        "z": "bdab1cd4fe3c64e3",
+        "name": "Receive Telemetry",
+        "url": "/api/sensor",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 230,
+        "y": 100,
+        "wires": [
+            [
+                "3cabda1f89837760",
+                "61231d22e2a732cb"
+            ]
+        ]
+    },
+    {
+        "id": "4e5bfae33cc6746f",
+        "type": "http response",
+        "z": "bdab1cd4fe3c64e3",
+        "name": "Response",
+        "statusCode": "200",
+        "headers": {},
+        "x": 620,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "3cabda1f89837760",
+        "type": "debug",
+        "z": "bdab1cd4fe3c64e3",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "61231d22e2a732cb",
+        "type": "function",
+        "z": "bdab1cd4fe3c64e3",
+        "name": "function 1",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 100,
+        "wires": [
+            [
+                "4e5bfae33cc6746f"
+            ]
+        ]
+    }
+]
