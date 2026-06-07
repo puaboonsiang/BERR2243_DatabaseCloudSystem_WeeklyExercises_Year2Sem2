@@ -1,0 +1,125 @@
+[
+    {
+        "id": "2b17c038710815d8",
+        "type": "tab",
+        "label": "Exercise2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "1181a011e544ffa6",
+        "type": "http in",
+        "z": "2b17c038710815d8",
+        "name": "Telemetry",
+        "url": "/api/sensor1",
+        "method": "post",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 60,
+        "wires": [
+            [
+                "d083e93936c34aaf",
+                "1b7e31531e6c23c7"
+            ]
+        ]
+    },
+    {
+        "id": "1b7e31531e6c23c7",
+        "type": "http response",
+        "z": "2b17c038710815d8",
+        "name": "Response",
+        "statusCode": "200",
+        "headers": {},
+        "x": 280,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "d083e93936c34aaf",
+        "type": "debug",
+        "z": "2b17c038710815d8",
+        "name": "Debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 280,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "7fe5a995cac5dccb",
+        "type": "http in",
+        "z": "2b17c038710815d8",
+        "name": "Telemetry",
+        "url": "/api/sensor2",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 180,
+        "wires": [
+            [
+                "a80f8377f3e0fa61",
+                "dd1f7dc8a9ed73ff"
+            ]
+        ]
+    },
+    {
+        "id": "e7e63ee420988bd4",
+        "type": "http response",
+        "z": "2b17c038710815d8",
+        "name": "Response",
+        "statusCode": "200",
+        "headers": {},
+        "x": 600,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "a80f8377f3e0fa61",
+        "type": "debug",
+        "z": "2b17c038710815d8",
+        "name": "Debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 280,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "dd1f7dc8a9ed73ff",
+        "type": "function",
+        "z": "2b17c038710815d8",
+        "name": "Function \"return any message\".",
+        "func": "msg.payload = {\n    \"sensor_id\": \"ESP32_01\",\n    temperature: 24.5,\n    humidity: 60\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 180,
+        "wires": [
+            [
+                "e7e63ee420988bd4",
+                "a80f8377f3e0fa61"
+            ]
+        ]
+    }
+]
