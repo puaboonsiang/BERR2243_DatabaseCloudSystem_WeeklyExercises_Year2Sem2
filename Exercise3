@@ -1,0 +1,213 @@
+[
+    {
+        "id": "4cdd287dd4d5e4fb",
+        "type": "tab",
+        "label": "Exercise3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5176e2a4b24f1460",
+        "type": "http in",
+        "z": "4cdd287dd4d5e4fb",
+        "name": "Step1 GET params",
+        "url": "/api/sensor/:id",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 60,
+        "wires": [
+            [
+                "4a83e93cca052702",
+                "56a8424f1f6ab5fb"
+            ]
+        ]
+    },
+    {
+        "id": "2579aa35153dc769",
+        "type": "http response",
+        "z": "4cdd287dd4d5e4fb",
+        "name": "Response",
+        "statusCode": "200",
+        "headers": {},
+        "x": 600,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "4a83e93cca052702",
+        "type": "debug",
+        "z": "4cdd287dd4d5e4fb",
+        "name": "Debug \"dynamic variable, :id\".",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "d353d5338e4576e7",
+        "type": "http in",
+        "z": "4cdd287dd4d5e4fb",
+        "name": "Step1 GET Query",
+        "url": "/api/telemetry",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 240,
+        "wires": [
+            [
+                "dd24cb67ca56ad33",
+                "6cd51c16e991e05f"
+            ]
+        ]
+    },
+    {
+        "id": "dd24cb67ca56ad33",
+        "type": "http response",
+        "z": "4cdd287dd4d5e4fb",
+        "name": "Response",
+        "statusCode": "200",
+        "headers": {},
+        "x": 340,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "6cd51c16e991e05f",
+        "type": "debug",
+        "z": "4cdd287dd4d5e4fb",
+        "name": "Debug \"api/telemetry?location=lab&status=active\".",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "9d8a881de7edd918",
+        "type": "http in",
+        "z": "4cdd287dd4d5e4fb",
+        "name": "Step2 Header",
+        "url": "/api/secure-data",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 420,
+        "wires": [
+            [
+                "3cdf6a3c8cb479b0",
+                "1a6b9c55305580ef"
+            ]
+        ]
+    },
+    {
+        "id": "9dfc865c7625f350",
+        "type": "http response",
+        "z": "4cdd287dd4d5e4fb",
+        "name": "Response",
+        "statusCode": "200",
+        "headers": {},
+        "x": 580,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "3cdf6a3c8cb479b0",
+        "type": "debug",
+        "z": "4cdd287dd4d5e4fb",
+        "name": "Debug \"msg.payload = msg.req.headers\".",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "3339d14362ea0c0a",
+        "type": "comment",
+        "z": "4cdd287dd4d5e4fb",
+        "name": "\"msg.req.params\", which \"api/sensor/:id\", the \":id\" = \"1\".",
+        "info": "",
+        "x": 240,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "b3983195a609a69f",
+        "type": "comment",
+        "z": "4cdd287dd4d5e4fb",
+        "name": "\"msg.req.query\", which \"/api/telemetry?\" with \"[key1]=[value1]&[key2]=[value2]\".",
+        "info": "",
+        "x": 320,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "56a8424f1f6ab5fb",
+        "type": "function",
+        "z": "4cdd287dd4d5e4fb",
+        "name": "\".payload = .req.body\".",
+        "func": "msg.payload = msg.req.body;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 60,
+        "wires": [
+            [
+                "2579aa35153dc769",
+                "4a83e93cca052702"
+            ]
+        ]
+    },
+    {
+        "id": "1a6b9c55305580ef",
+        "type": "function",
+        "z": "4cdd287dd4d5e4fb",
+        "name": "Check for Authorization.",
+        "func": "msg.payload = {\n    \"authorization\":msg.req.headers[\"authorization\"],\n   \"content-type\":msg.req.headers[\"content-type\"]\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 420,
+        "wires": [
+            [
+                "9dfc865c7625f350",
+                "3cdf6a3c8cb479b0"
+            ]
+        ]
+    }
+]
