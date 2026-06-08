@@ -1,0 +1,79 @@
+[
+    {
+        "id": "74224bee78027571",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "96e2556d10ccbbed",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "host.docker.internal",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "7660826f48cffc49",
+        "type": "mqtt in",
+        "z": "74224bee78027571",
+        "name": "",
+        "topic": "campus/state/door",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "96e2556d10ccbbed",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 60,
+        "wires": [
+            [
+                "0ab683a3e6aa91be"
+            ]
+        ]
+    },
+    {
+        "id": "0ab683a3e6aa91be",
+        "type": "debug",
+        "z": "74224bee78027571",
+        "name": "Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 60,
+        "wires": []
+    }
+]
